@@ -1,0 +1,145 @@
+/* TODO Failed to compile
+Error: Can't resolve 'fonts/DMSans-Regular.ttf' in 'C:\XXX\my-app\src' 
+
+@font-face {
+    font-family: DM Sans;
+    src: local('DMSans-Regular'), url("/fonts/DMSans-Regular.ttf") format('ttf');
+
+}
+
+body,
+html {
+    margin: 0;
+    font-family: DM Sans, sans-serif;
+} 
+*/
+
+:root {
+  --primaire-title: #911C1C;
+  --primaire-subtitle: #D3573C;
+  --secondaire-1: #D3573C;
+  --secondaire-2: #FAFAFA;
+  --secondaire-3: #901C1C;
+  --size-title: 36px;
+}
+
+/* ==== HEADER ==== */
+.icon {
+    color: var(--primaire-title);
+    font-size: var(--size-title);
+    text-decoration: none;
+}
+
+.index {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.index :nth-child(1) { order: 1;}
+.index :nth-child(2) { order: 2;}
+.index :nth-child(3) { order: 3;}
+
+@media screen and (max-width: 1200px) {
+  .index :nth-child(2) { order: 3;}
+  .index :nth-child(3) { order: 2;}
+}
+
+.index__tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1200px) {
+  .index__tag {
+    margin-top: 20px;
+  }
+}
+
+.index__title {
+    font-size: var(--size-title);
+    color: var(--primaire-title);
+}
+
+@media screen and (max-width: 1200px) {
+  .index__title {
+    font-size: 18px;
+  }
+}
+
+.bottom {
+    border: 0.5px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 11px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    color: var(--primaire-title);
+}
+
+/* ==== BODY ==== */
+.users {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+}
+
+@media screen and (max-width: 1200px) {
+  .users{
+    grid-template-columns: 1fr;
+  }
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.user__portrait {
+  width:200px;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.image-cropper {
+  display: inline;
+  height: 100%;
+  width: auto;
+}
+
+.user__address {
+  color: var(--secondaire-3);
+}
+
+.user__price {
+  color: #757575;
+}
+
+h2 {
+  color: var(--primaire-subtitle);
+}
+
+.user__tags {
+  display: flex;
+}
+
+/* TODO Il faudra faire mieux au sujet des paddings */
+.user__tag {
+  border: 1px solid #C4C4C4;
+  border-radius: 25px;
+  margin-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: var(--primaire-title);
+}
