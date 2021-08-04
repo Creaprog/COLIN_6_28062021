@@ -8,15 +8,17 @@ import {
 } from "react-router-dom";
 
 import Home from "./Home/Home";
-
-
+import Photographer from "./Photographer/Photographer";
 
 function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/">
+        <Route exact path="/">
           <Home />
+        </Route>
+        <Route path="/photographer/:id">
+          <Photographer />
         </Route>
       </Switch>
     </Router>

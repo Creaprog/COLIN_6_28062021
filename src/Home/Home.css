@@ -1,18 +1,13 @@
-/* TODO Failed to compile
-Error: Can't resolve 'fonts/DMSans-Regular.ttf' in 'C:\XXX\my-app\src' 
-
 @font-face {
     font-family: DM Sans;
-    src: local('DMSans-Regular'), url("/fonts/DMSans-Regular.ttf") format('ttf');
-
+    src: local('DMSans-Regular'), url("../fonts/DMSans-Regular.ttf") format('ttf');
 }
 
 body,
 html {
     margin: 0;
     font-family: DM Sans, sans-serif;
-} 
-*/
+}
 
 :root {
   --primaire-title: #911C1C;
@@ -96,6 +91,7 @@ html {
     grid-template-columns: 1fr;
   }
 }
+
 .user {
   display: flex;
   flex-direction: column;
@@ -142,4 +138,9 @@ h2 {
   padding-left: 10px;
   padding-right: 10px;
   color: var(--primaire-title);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
