@@ -13,17 +13,26 @@ class Home extends React.Component {
         };
       }
 
+    updateTag(value) {
+        return (this.state.tag === value) ? this.setState({tag : 0}): this.setState({tag : value});
+    }
+
+    updateColor(value) {
+        return (this.state.tag === value) ? "#D3573C": "white";
+    }
+
     render() {
         var photographers = [];
+        
         if (this.state.tag === 0) {
             for (const photographer of json.photographers) {
-                photographers.push(ContactCard(photographer));
+                photographers.push(<div key={photographer.id.toString()}>{ContactCard(photographer)}</div>);
             }
         }
         else {
             for (const photographer of json.photographers) {
                 if (photographer.tags.includes(this.state.tag)) {
-                    photographers.push(ContactCard(photographer));
+                    photographers.push(<div key={photographer.id.toString()}>{ContactCard(photographer)}</div>);
                 }
             }
         }
@@ -32,21 +41,19 @@ class Home extends React.Component {
             <header className="index">
             <a className="icon" href="/">FishEye</a>
             <nav className="index__tag">
-                <div className="bottom" onClick={() => (this.state.tag === "portrait") ? this.setState({tag : 0}): this.setState({tag : "portrait"})}>#Portrait</div>
-                <div className="bottom" onClick={() => (this.state.tag === "art") ? this.setState({tag : 0}): this.setState({tag : "art"})}>#Art</div>
-                <div className="bottom" onClick={() => (this.state.tag === "fashion") ? this.setState({tag : 0}): this.setState({tag : "fashion"})}>#Fashion</div>
-                <div className="bottom" onClick={() => (this.state.tag === "architecture") ? this.setState({tag : 0}): this.setState({tag : "architecture"})}>#Architecture</div>
-                <div className="bottom" onClick={() => (this.state.tag === "travel") ? this.setState({tag : 0}): this.setState({tag : "travel"})}>#Travel</div>
-                <div className="bottom" onClick={() => (this.state.tag === "sport") ? this.setState({tag : 0}): this.setState({tag : "sport"})}>#Sport</div>
-                <div className="bottom" onClick={() => (this.state.tag === "animals") ? this.setState({tag : 0}): this.setState({tag : "animals"})}>#Animals</div>
-                <div className="bottom" onClick={() => (this.state.tag === "events") ? this.setState({tag : 0}): this.setState({tag : "events"})}>#Events</div>
+                <div className="bottom" style={{background: this.updateColor("portrait")}} onClick={() => this.updateTag("portrait")}>#Portrait</div>
+                <div className="bottom" style={{background: this.updateColor("art")}} onClick={() => this.updateTag("art")}>#Art</div>
+                <div className="bottom" style={{background: this.updateColor("fashion")}} onClick={() => this.updateTag("fashion")}>#Fashion</div>
+                <div className="bottom" style={{background: this.updateColor("architecture")}} onClick={() => this.updateTag("architecture")}>#Architecture</div>
+                <div className="bottom" style={{background: this.updateColor("travel")}} onClick={() => this.updateTag("travel")}>#Travel</div>
+                <div className="bottom" style={{background: this.updateColor("sport")}} onClick={() => this.updateTag("sport")}>#Sport</div>
+                <div className="bottom" style={{background: this.updateColor("animals")}} onClick={() => this.updateTag("animals")}>#Animals</div>
+                <div className="bottom" style={{background: this.updateColor("events")}} onClick={() => this.updateTag("events")}>#Events</div>
             </nav>
             <div className="index__title">Nos photographes</div>
             </header>
                 <div className="users">
-                    {photographers.map(photographer => 
-                        <div key={photographer.id}>{photographer}</div>
-                    )}
+                    {photographers}
                 </div>
         </div>
      );

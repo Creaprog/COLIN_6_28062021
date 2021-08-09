@@ -4,7 +4,7 @@ import TagsCard from "./TagsCard";
 function ContactCard(props) {
     var tags = [];
     for (const tag of props.tags) {
-        tags.push(TagsCard(tag));
+        tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
     }
     return (
         <a className="user" href={"photographer/" + props.id}>
@@ -16,6 +16,7 @@ function ContactCard(props) {
                 <div>{props.tagline}</div>
                 <div className="user__price">{props.price}€/jour</div>
                 <div className="user__tags">{tags}</div>
+
         </a>
     );
 }
