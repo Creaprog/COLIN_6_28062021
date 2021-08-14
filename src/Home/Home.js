@@ -2,6 +2,7 @@ import React from 'react';
 
 import './Home.css';
 import ContactCard from "./ContactCard";
+import ScrollToTopBtn from "./ScrollToTopBtn";
 let json = require('./../data.json');
 
 class Home extends React.Component {
@@ -13,6 +14,7 @@ class Home extends React.Component {
         };
       }
 
+    
     updateTag(value) {
         return (this.state.tag === value) ? this.setState({tag : 0}): this.setState({tag : value});
     }
@@ -55,6 +57,7 @@ class Home extends React.Component {
                 <div className="users">
                     {photographers}
                 </div>
+                <ScrollToTopBtn />
         </div>
      );
     }

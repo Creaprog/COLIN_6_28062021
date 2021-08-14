@@ -1,0 +1,29 @@
+body,
+html {
+    margin: 0;
+    font-family: DM Sans, sans-serif;
+}
+
+.scroll-to-top {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: fadeIn 700ms ease-in-out 1s both;
+    cursor: pointer;
+    border-radius: 0.3rem;
+    background-color: #D3573C;
+}
+
+#message {
+    color: black;
+    margin: 3px;
+}
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
