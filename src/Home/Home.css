@@ -100,18 +100,23 @@ html {
   margin-top: 50px;
 }
 
-.user__portrait {
+/* Tuto https://www.webfx.com/blog/web-design/circular-images-css/ */
+/* .user__portrait {
   width:200px;
   height: 200px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-}
+} */
 
 .image-cropper {
-  display: inline;
-  height: 100%;
-  width: auto;
+  width:200px;
+  height: 200px;
+  border-radius: 50%;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
 }
 
 .user__address {
