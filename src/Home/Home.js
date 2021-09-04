@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../App.css';
 import './Home.css';
 import ContactCard from "./ContactCard";
 import ScrollToTopBtn from "./ScrollToTopBtn";

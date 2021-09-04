@@ -1,0 +1,74 @@
+.container {
+    /* TODO Faire mieux. */
+    margin-left: 50px;
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+/* ### Banner ### */
+
+.Jumbotron {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: #FAFAFA;
+    padding: 50px;
+}
+
+.user__name {
+    font-size: 1.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: var(--primaire-subtitle);
+}
+
+.icon {
+    color: var(--primaire-title);
+    font-size: var(--size-title);
+    text-decoration: none;
+}
+
+.card {
+    display: flex;
+}
+
+.card-body {
+    margin-right: 20px;
+}
+
+.card-pic {
+    margin-left: auto;
+}
+
+.card-buttom {
+    background-color: var(--secondaire-3);
+    padding: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+.image-cropper {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
+
+/* ### Filter ### */
+
+.media {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;  
+}
+
+@media screen and (max-width: 1200px) {
+    .media {
+      grid-template-columns: 1fr;
+    }
+}
+
