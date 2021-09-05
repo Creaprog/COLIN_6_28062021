@@ -62,8 +62,9 @@
 .media {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;  
+    grid-column-gap: 20px;
+    grid-row-gap: 50px;
+    position: relative;
 }
 
 @media screen and (max-width: 1200px) {
@@ -72,3 +73,16 @@
     }
 }
 
+.image-rectangle {
+    border-radius: 5px;
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}
+
+.video-rectangle {
+    border-radius: 5px;
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+}

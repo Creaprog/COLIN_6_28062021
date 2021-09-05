@@ -5,14 +5,23 @@ import TagsCard from "./../Home/TagsCard";
 import { useParams } from 'react-router-dom';
 let json = require('./../data.json');
 
+function DisplayCard(media, photographer) {
+  return media.map(m =>
+    (m.image !== undefined) ? (<img className="image-rectangle" key={m.id} src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.image} alt={m.title} />):
+    (<video className="video-rectangle" autoPlay width="320" key={m.id} ><source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.video} type="video/mp4" /></video>)
+  )
+}
+
 export default function Photographer() {
   const { id } = useParams();
   var tags = [];
   const media = json.media.filter(m => m.photographerId.toString() === id);
   const photographer = json.photographers.filter(p => p.id.toString() === id);
+
   for (const tag of photographer[0].tags) {
     tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
   }
+
   return (
     <div className="container">
       <a className="icon" href="/">FishEye</a>
@@ -51,7 +60,7 @@ export default function Photographer() {
       </nav>
       {/* TODO : Faire le filtre suivant le choix de l'acteur */}
       <div className="media">
-        {media.map(m => <img className="image-cropper" key={m.id} src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.image} alt={m.title} />)}
+        {DisplayCard(media, photographer)}
       </div>
     </div>
   );
