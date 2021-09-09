@@ -86,3 +86,8 @@
     width: 300px;
     object-fit: cover;
 }
+
+.card-text {
+    display: flex;
+    justify-content: space-around;
+}

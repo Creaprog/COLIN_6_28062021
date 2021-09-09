@@ -7,8 +7,8 @@ let json = require('./../data.json');
 
 function DisplayCard(media, photographer) {
   return media.map(m =>
-    (m.image !== undefined) ? (<img className="image-rectangle" key={m.id} src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.image} alt={m.title} />):
-    (<video className="video-rectangle" autoPlay width="320" key={m.id} ><source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.video} type="video/mp4" /></video>)
+    (m.image !== undefined) ? (<div className="card-media"><img className="image-rectangle" key={m.id} src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.image} alt={m.title} /><div className="card-text"><div className="card-title">{m.title}</div><div className="heart">{m.likes}</div></div></div>):
+    (<div className="card-media"><video className="video-rectangle" autoPlay width="320" key={m.id} ><source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.video} type="video/mp4" /></video><div className="card-text">{m.title}</div></div>)
   )
 }
 
