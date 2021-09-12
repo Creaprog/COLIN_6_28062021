@@ -16,8 +16,8 @@ class App extends Component {
       <HashRouter basename='/'>
         <Router>
           <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/photographer/:id" component={Photographer} />
+            <Route exact path='/' component={Home} />
+            <Route path='/photographer/:id' component={Photographer} />
           </Switch>
         </Router>
       </HashRouter>
