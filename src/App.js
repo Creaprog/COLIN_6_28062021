@@ -13,7 +13,7 @@ import Photographer from "./Photographer/Photographer";
 class App extends Component {
   render() {
     return (
-      <HashRouter basename='/'>
+      <HashRouter basename={process.env.PUBLIC_URL}>
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />

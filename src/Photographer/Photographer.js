@@ -44,21 +44,22 @@ export default function Photographer() {
         </div>
       </div>
       {/* TODO : Menu déroulant à faire */}
-      <p>Trier par</p>
-      <nav>
-        <li className="nav-main">
-          <a className="link" href="#">Popularité</a>
-          <ul className="nav-sub">
-            <li className="nav-item">
-              <a className="link" href="#">Date</a>
-            </li>
-            <li className="nav-item">
-              <a className="link" href="#">Titre</a>
-            </li>
+      <div className="filter">
+        <p className="text-filter"><b>Trier par</b></p>
+        <nav className="nav-filter">
+          <ul className="nav-main">
+            <a className="link" href="#">Popularité</a>
+            <ul className="nav-sub">
+              <li className="nav-item">
+                <a className="link" href="#">Date</a>
+              </li>
+              <li className="nav-item">
+                <a className="link" href="#">Titre</a>
+              </li>
+            </ul>
           </ul>
-        </li>
-      </nav>
-
+        </nav>
+      </div>
       {/* TODO : Faire le filtre suivant le choix de l'acteur */}
       <div className="media">
         {DisplayCard(media, photographer)}
