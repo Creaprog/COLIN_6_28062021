@@ -2,68 +2,141 @@ import './Photographer.css';
 import '../App.css';
 import React from 'react';
 import TagsCard from "./../Home/TagsCard";
-import { useParams } from 'react-router-dom';
 let json = require('./../data.json');
 
-function DisplayCard(media, photographer) {
-  return media.map(m =>
-    (m.image !== undefined) ? (<div className="card-media"><img className="image-rectangle" key={m.id} src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.image} alt={m.title} /><div className="card-text"><div className="card-title">{m.title}</div><div className="heart">{m.likes}</div></div></div>):
-    (<div className="card-media"><video className="video-rectangle" autoPlay width="320" key={m.id} ><source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + m.video} type="video/mp4" /></video><div className="card-text">{m.title}</div></div>)
-  )
-}
-
-export default function Photographer() {
-  const { id } = useParams();
-  var tags = [];
-  const media = json.media.filter(m => m.photographerId.toString() === id);
-  const photographer = json.photographers.filter(p => p.id.toString() === id);
-
-  for (const tag of photographer[0].tags) {
-    tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
+class Photographer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: ['Popularité', 'Date', 'Titre'],
+      media: json.media.filter(m => m.photographerId.toString() === this.props.match.params.id)
+    };
   }
 
-  return (
-    <div className="container">
-      <a className="icon" href="/">FishEye</a>
-      <div className="Jumbotron">
-        <div className="card">
-          <div className="card-body">
-            <div className="user__name">{photographer[0].name}</div>
-            <div className="user__address">{photographer[0].city}, {photographer[0].country}</div>
-            <div>{photographer[0].tagline}</div>
-            <div className="user__tags">{tags}</div>
-          </div>
-          <div className="card-middle">
-            <div className="card-buttom">
-              Contactez-moi
-            </div>
-          </div>
-          <div className="card-pic">
-            <img className="image-cropper" src={process.env.PUBLIC_URL + "/assets/Photographers/" + photographer[0].portrait} alt={photographer[0].portrait} />
-          </div>
+  imageCard(media, photographer) {
+    return (
+      <div className="card-media" key={media.id}>
+        <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + media.image} alt={media.title} />
+        <div className="card-text">
+          <div className="card-title">{media.title}</div>
+          <div className="heart">{media.likes}</div>
         </div>
       </div>
-      {/* TODO : Menu déroulant à faire */}
-      <div className="filter">
-        <p className="text-filter"><b>Trier par</b></p>
-        <nav className="nav-filter">
-          <ul className="nav-main">
-            <a className="link" href="#">Popularité</a>
-            <ul className="nav-sub">
-              <li className="nav-item">
-                <a className="link" href="#">Date</a>
-              </li>
-              <li className="nav-item">
-                <a className="link" href="#">Titre</a>
-              </li>
+    );
+  }
+
+  videoCard(media, photographer) {
+    return (
+      <div className="card-media" key={media.id}>
+        <video className="video-rectangle" autoPlay width="320">
+          <source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + media.video} type="video/mp4" />
+        </video>
+        <div className="card-text">{media.title}</div>
+        <div className="heart">{media.likes}</div>
+      </div>
+    )
+  }
+
+  sortAlpha(array) {
+    return array.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  sortDate(array) {
+    return array.sort((a, b) => a.date.localeCompare(b.date));
+  }
+
+  sortPopularity(array) {
+    return array.sort((a, b) => b.likes - a.likes);
+  }
+
+  displayCard(media, photographer) {
+    return media.map(m => (m.image !== undefined) ?
+                      (this.imageCard(m, photographer)) :
+                      (this.videoCard(m, photographer))
+    )
+  }
+  
+  swap(array, elem) {
+    var value = array[0];
+    var position = array.indexOf(elem);
+    array[0] = elem;
+    array[position] = value;
+    this.setState({filter : array});
+    this.updateCard(elem);
+  }
+
+  updateCard(elem) {
+    switch (elem) {
+      default:
+        break;
+      case 'Titre':
+        this.setState({media: this.sortAlpha(this.state.media)});
+        break;
+      case 'Date':
+        this.setState({media: this.sortDate(this.state.media)});
+        break;
+      case 'Popularité':
+        this.setState({media: this.sortPopularity(this.state.media)});
+        break;
+    }
+  }
+  
+  render() {
+    const id = this.props.match.params.id;
+    var tags = [];
+    const photographer = json.photographers.filter(p => p.id.toString() === id);
+  
+    for (const tag of photographer[0].tags) {
+      tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
+    }
+  
+    return (
+      <div className="container">
+        <a className="icon" href="/">FishEye</a>
+        <div className="Jumbotron">
+          <div className="card">
+            <div className="card-body">
+              <div className="user__name">{photographer[0].name}</div>
+              <div className="user__address">{photographer[0].city}, {photographer[0].country}</div>
+              <div>{photographer[0].tagline}</div>
+              <div className="user__tags">{tags}</div>
+            </div>
+            <div className="card-middle">
+              <div className="card-buttom">
+                Contactez-moi
+              </div>
+            </div>
+            <div className="card-pic">
+              <img className="image-cropper" src={process.env.PUBLIC_URL + "/assets/Photographers/" + photographer[0].portrait} alt={photographer[0].portrait} />
+            </div>
+          </div>
+        </div>
+        {/* TODO : Menu déroulant à faire */}
+        <div className="filter">
+          <p className="text-filter"><b>Trier par</b></p>
+          <nav className="nav-filter">
+            <ul className="nav-main">
+              <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[0])}>
+                {this.state.filter[0]}
+              </div>
+              <ul className="nav-sub">
+                <li className="nav-item">
+                  <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[1])}>{this.state.filter[1]}</div>
+                </li>
+                <li className="nav-item">
+                  <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[2])}>{this.state.filter[2]}</div>
+                </li>
+              </ul>
             </ul>
-          </ul>
-        </nav>
+          </nav>
+        </div>
+        {/* TODO : Faire le filtre suivant le choix de l'acteur */}
+        <div className="media">
+          {this.displayCard(this.state.media, photographer)}
+        </div>
       </div>
-      {/* TODO : Faire le filtre suivant le choix de l'acteur */}
-      <div className="media">
-        {DisplayCard(media, photographer)}
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Photographer;
