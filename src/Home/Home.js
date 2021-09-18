@@ -3,18 +3,30 @@ import '../App.css';
 import './Home.css';
 import ContactCard from "./ContactCard";
 import ScrollToTopBtn from "./ScrollToTopBtn";
-let json = require('./../data.json');
+import axios from 'axios';
 
 class Home extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-          tag: 0
+          tag: 0,
+          photographers: []
         };
       }
 
+      async call() {
+        await axios.get("/data.json")
+          .then(result => this.setState({
+            photographers: result.data.photographers
+          }))
+          .catch(error => console.log(error));
+      }
     
+      componentDidMount() {
+        this.call();
+      }
+      
     updateTag(value) {
         return (this.state.tag === value) ? this.setState({tag : 0}): this.setState({tag : value});
     }
@@ -27,12 +39,12 @@ class Home extends React.Component {
         var photographers = [];
         
         if (this.state.tag === 0) {
-            for (const photographer of json.photographers) {
+            for (const photographer of this.state.photographers) {
                 photographers.push(<div key={photographer.id.toString()}>{ContactCard(photographer)}</div>);
             }
         }
         else {
-            for (const photographer of json.photographers) {
+            for (const photographer of this.state.photographers) {
                 if (photographer.tags.includes(this.state.tag)) {
                     photographers.push(<div key={photographer.id.toString()}>{ContactCard(photographer)}</div>);
                 }

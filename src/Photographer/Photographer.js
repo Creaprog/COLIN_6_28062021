@@ -1,22 +1,39 @@
 import './Photographer.css';
 import '../App.css';
 import React from 'react';
+import axios from 'axios';
 import TagsCard from "./../Home/TagsCard";
-let json = require('./../data.json');
 
 class Photographer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       filter: ['Popularité', 'Date', 'Titre'],
-      media: json.media.filter(m => m.photographerId.toString() === this.props.match.params.id)
+      media: [],
+      photographers: [],
+      tags: [],
     };
   }
 
-  imageCard(media, photographer) {
+  async call() {
+    await axios.get("/data.json")
+      .then(result => this.setState({
+        media: result.data.media.filter(m => m.photographerId.toString() === this.props.match.params.id),
+        photographers: result.data.photographers.filter(p => p.id.toString() === this.props.match.params.id)
+      }))
+      .catch(error => console.log(error));
+  }
+
+  componentDidMount() {
+    this.call().then(() => {
+      this.createTagsCard(this.state.photographers[0].tags);
+    })
+  }
+
+  imageCard(media) {
     return (
       <div className="card-media" key={media.id}>
-        <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + media.image} alt={media.title} />
+        <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers[0].name + "/" + media.image} alt={media.title} />
         <div className="card-text">
           <div className="card-title">{media.title}</div>
           <div className="heart">{media.likes}</div>
@@ -25,11 +42,11 @@ class Photographer extends React.Component {
     );
   }
 
-  videoCard(media, photographer) {
+  videoCard(media) {
     return (
       <div className="card-media" key={media.id}>
         <video className="video-rectangle" autoPlay width="320">
-          <source src={process.env.PUBLIC_URL + "/assets/" + photographer[0].name + "/" + media.video} type="video/mp4" />
+          <source src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers[0].name + "/" + media.video} type="video/mp4" />
         </video>
         <div className="card-text">{media.title}</div>
         <div className="heart">{media.likes}</div>
@@ -49,10 +66,10 @@ class Photographer extends React.Component {
     return array.sort((a, b) => b.likes - a.likes);
   }
 
-  displayCard(media, photographer) {
+  displayCard(media) {
     return media.map(m => (m.image !== undefined) ?
-                      (this.imageCard(m, photographer)) :
-                      (this.videoCard(m, photographer))
+                      (this.imageCard(m)) :
+                      (this.videoCard(m))
     )
   }
   
@@ -80,26 +97,26 @@ class Photographer extends React.Component {
         break;
     }
   }
-  
-  render() {
-    const id = this.props.match.params.id;
+
+  createTagsCard(photographerTags) {
     var tags = [];
-    const photographer = json.photographers.filter(p => p.id.toString() === id);
-  
-    for (const tag of photographer[0].tags) {
+    for (const tag of photographerTags) {
       tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
     }
-  
+    this.setState({tags: tags});
+  }
+
+  render() {
     return (
       <div className="container">
         <a className="icon" href="/">FishEye</a>
         <div className="Jumbotron">
           <div className="card">
             <div className="card-body">
-              <div className="user__name">{photographer[0].name}</div>
-              <div className="user__address">{photographer[0].city}, {photographer[0].country}</div>
-              <div>{photographer[0].tagline}</div>
-              <div className="user__tags">{tags}</div>
+              <div className="user__name">{this.state.photographers[0]?.name}</div>
+              <div className="user__address">{this.state.photographers[0]?.city}, {this.state.photographers[0]?.country}</div>
+              <div>{this.state.photographers[0]?.tagline}</div>
+              <div className="user__tags">{this.state.tags}</div>
             </div>
             <div className="card-middle">
               <div className="card-buttom">
@@ -107,11 +124,10 @@ class Photographer extends React.Component {
               </div>
             </div>
             <div className="card-pic">
-              <img className="image-cropper" src={process.env.PUBLIC_URL + "/assets/Photographers/" + photographer[0].portrait} alt={photographer[0].portrait} />
+              <img className="image-cropper" src={process.env.PUBLIC_URL + "/assets/Photographers/" + this.state.photographers[0]?.portrait} alt={this.state.photographers[0]?.portrait} />
             </div>
           </div>
         </div>
-        {/* TODO : Menu déroulant à faire */}
         <div className="filter">
           <p className="text-filter"><b>Trier par</b></p>
           <nav className="nav-filter">
@@ -130,9 +146,8 @@ class Photographer extends React.Component {
             </ul>
           </nav>
         </div>
-        {/* TODO : Faire le filtre suivant le choix de l'acteur */}
         <div className="media">
-          {this.displayCard(this.state.media, photographer)}
+          {this.displayCard(this.state.media)}
         </div>
       </div>
     );
