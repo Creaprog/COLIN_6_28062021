@@ -4,6 +4,7 @@ import './Home.css';
 import ContactCard from "./ContactCard";
 import ScrollToTopBtn from "./ScrollToTopBtn";
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 class Home extends React.Component {
 
@@ -53,7 +54,7 @@ class Home extends React.Component {
      return(
         <div>
             <header className="index">
-            <a className="icon" href="/">FishEye</a>
+            <div className="icon"><Link to={'/'}>FishEye</Link></div>
             <nav className="index__tag">
                 <div className="bottom" style={{background: this.updateColor("portrait")}} onClick={() => this.updateTag("portrait")}>#Portrait</div>
                 <div className="bottom" style={{background: this.updateColor("art")}} onClick={() => this.updateTag("art")}>#Art</div>
