@@ -1,5 +1,5 @@
 .container {
-    margin: 20px 50px 0 50px;
+    margin: 20px 100px 0 100px;
 }
 
 /* ### Banner ### */
@@ -59,8 +59,8 @@
 .media {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 20px;
-    grid-row-gap: 50px;
+    grid-column-gap: 100px;
+    grid-row-gap: 100px;
     grid-template-rows: repeat(4, 400px);
     position: relative;
 }
@@ -76,7 +76,6 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
 .video-rectangle {
@@ -88,13 +87,16 @@
 
 .card-text {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    color : var(--secondaire-3);
+    font-size: 24px;
 }
 
 /* Menu déroulant */
 
 .filter {
     display: flex;
+    margin-bottom: 20px;
 }
 
 .text-filter {
@@ -164,3 +166,4 @@ ul {
     position: relative;
 
 }
+

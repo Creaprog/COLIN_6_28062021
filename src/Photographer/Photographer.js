@@ -2,6 +2,9 @@ import './Photographer.css';
 import '../App.css';
 import React from 'react';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretUp, faHeart } from '@fortawesome/fontawesome-free-solid'
+
 import TagsCard from "./../Home/TagsCard";
 
 class Photographer extends React.Component {
@@ -32,11 +35,11 @@ class Photographer extends React.Component {
 
   imageCard(media) {
     return (
-      <div className="card-media" key={media.id}>
+      <div key={media.id}>
         <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers[0].name + "/" + media.image} alt={media.title} />
         <div className="card-text">
           <div className="card-title">{media.title}</div>
-          <div className="heart">{media.likes}</div>
+          <div className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></div>
         </div>
       </div>
     );
@@ -44,12 +47,14 @@ class Photographer extends React.Component {
 
   videoCard(media) {
     return (
-      <div className="card-media" key={media.id}>
+      <div key={media.id}>
         <video className="video-rectangle" autoPlay width="320">
           <source src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers[0].name + "/" + media.video} type="video/mp4" />
         </video>
-        <div className="card-text">{media.title}</div>
-        <div className="heart">{media.likes}</div>
+        <div className="card-text">
+          <div className="card-title">{media.title}</div>
+          <div className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></div>
+        </div>
       </div>
     )
   }
@@ -133,7 +138,7 @@ class Photographer extends React.Component {
           <nav className="nav-filter">
             <ul className="nav-main">
               <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[0])}>
-                {this.state.filter[0]}
+                {this.state.filter[0]} <FontAwesomeIcon icon={faCaretUp} />
               </div>
               <ul className="nav-sub">
                 <li className="nav-item">
