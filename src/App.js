@@ -8,10 +8,10 @@ import {
 
 import Home from "./Home/Home";
 import Photographer from "./Photographer/Photographer";
-
 class App extends Component {
   render() {
     return (
+
         <Router>
           <Switch>
             <Route exact path='/' component={Home} />
