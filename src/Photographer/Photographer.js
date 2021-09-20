@@ -2,9 +2,9 @@ import './Photographer.css';
 import '../App.css';
 import React from 'react';
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretUp, faHeart } from '@fortawesome/fontawesome-free-solid'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretUp, faHeart } from '@fortawesome/fontawesome-free-solid';
+import MenuFixedDesktop from './MenuFixed.js';
 import TagsCard from "./../Home/TagsCard";
 
 class Photographer extends React.Component {
@@ -154,6 +154,7 @@ class Photographer extends React.Component {
         <div className="media">
           {this.displayCard(this.state.media)}
         </div>
+        <MenuFixedDesktop />
       </div>
     );
   }
