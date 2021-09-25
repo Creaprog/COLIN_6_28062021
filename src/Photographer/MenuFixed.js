@@ -5,11 +5,12 @@ import { faHeart } from '@fortawesome/fontawesome-free-solid';
 
 export default class MenuFixedDesktop extends Component {
 
-  // TODO: Mettre en place un props pour récupérer les valeurs
+  // TODO: Calculer le nombre de likes par auteur
   render() {
     return (
       <div className="menu_bot_right">
-        200 <FontAwesomeIcon icon={faHeart} />
+        <div>{this.props.likes} <FontAwesomeIcon icon={faHeart}/></div>  
+        <div>{this.props.price}€ / jour</div>
       </div>
     );
   }

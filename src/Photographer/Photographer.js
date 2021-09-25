@@ -15,6 +15,7 @@ class Photographer extends React.Component {
       media: [],
       photographers: [],
       tags: [],
+      likes: 0
     };
   }
 
@@ -22,7 +23,8 @@ class Photographer extends React.Component {
     await axios.get("/data.json")
       .then(result => this.setState({
         media: result.data.media.filter(m => m.photographerId.toString() === this.props.match.params.id),
-        photographers: result.data.photographers.filter(p => p.id.toString() === this.props.match.params.id)
+        photographers: result.data.photographers.filter(p => p.id.toString() === this.props.match.params.id),
+        likes: result.data.media.filter(m => m.photographerId.toString() === this.props.match.params.id).reduce((acc, cur) => acc + cur.likes, 0)
       }))
       .catch(error => console.log(error));
   }
@@ -154,7 +156,7 @@ class Photographer extends React.Component {
         <div className="media">
           {this.displayCard(this.state.media)}
         </div>
-        <MenuFixedDesktop />
+        <MenuFixedDesktop likes={this.state.likes} price={this.state.photographers[0]?.price}/>
       </div>
     );
   }
