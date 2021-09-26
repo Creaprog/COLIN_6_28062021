@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import './ScrollToTop.css';
 
-export default class ScrollToTop extends Component {
+//TODO: Fuite de mémoire quelque part ici...
+export default class ScrollToTopBtn extends Component {
   constructor(props) {
     super(props);
     this.state = {
       is_visible: false
     };
+    console.log("ScrollToTopBtn.js");
   }
 
-  componentDidMount() {
+  componentDidUpdate() {
     var scrollComponent = this;
     document.addEventListener("scroll", function(e) {
       scrollComponent.toggleVisibility();

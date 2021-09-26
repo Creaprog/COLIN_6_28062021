@@ -5,7 +5,6 @@ import { faHeart } from '@fortawesome/fontawesome-free-solid';
 
 export default class MenuFixedDesktop extends Component {
 
-  // TODO: Calculer le nombre de likes par auteur
   render() {
     return (
       <div className="menu_bot_right">
