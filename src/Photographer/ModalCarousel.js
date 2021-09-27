@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronLeft, faChevronRight } from '@fortawesome/fontawesome-free-solid';
 import './ModalCarousel.css';
 import React from 'react';
-
 export default class ModalCarousel extends React.Component {
 
     constructor(props) {
@@ -42,7 +41,7 @@ export default class ModalCarousel extends React.Component {
 
     imageCard() {
         return (
-            <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.props.photographers.name + "/" + this.props.media[this.state.index].image} alt={this.props.media.title} />
+            <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.props.photographers.name + "/" + this.props.media[this.state.index].image} alt={this.props.media[this.state.index].title} />
         )
     }
 
@@ -65,13 +64,16 @@ export default class ModalCarousel extends React.Component {
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </div>
                 <div className="modal-body">
+                    <div className="modal-body-header">
+                        <FontAwesomeIcon icon={faTimes} onClick={this.props.onClose} />
+                    </div>
                     {this.displayCard(this.props.media)}
+                    <div>
+                        <div className="card-text">{this.props.media[this.state.index].title}</div>
+                    </div>
                 </div>
                 <div className="modal-right" >
                     <FontAwesomeIcon icon={faChevronRight} onClick={() => this.more()} />
-                </div>
-                <div className="modal-footer">
-                    <FontAwesomeIcon icon={faTimes} onClick={this.props.onClose} />
                 </div>
             </div>
         </div>

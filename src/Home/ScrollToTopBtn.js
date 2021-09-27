@@ -6,16 +6,17 @@ export default class ScrollToTopBtn extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      is_visible: false
+      is_visible: false,
+      scrollComponent: this
     };
-    console.log("ScrollToTopBtn.js");
   }
 
-  componentDidUpdate() {
-    var scrollComponent = this;
-    document.addEventListener("scroll", function(e) {
-      scrollComponent.toggleVisibility();
-    });
+  componentDidMount() {
+    window.addEventListener("scroll", () => { this.state.scrollComponent.toggleVisibility(); });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", () => { this.state.scrollComponent.toggleVisibility(); });
   }
 
   toggleVisibility() {
@@ -38,10 +39,10 @@ export default class ScrollToTopBtn extends Component {
   }
 
   render() {
-    const { is_visible } = this.state;
+    // const { is_visible } = this.state;
     return (
       <div className="scroll-to-top">
-        {is_visible && (
+        {this.state.is_visible && (
           <div onClick={() => this.scrollToTop()}>
             <div id="message">Passer au contenu</div>
           </div>
