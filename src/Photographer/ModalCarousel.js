@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes, faChevronLeft, faChevronRight } from '@fortawesome/fontawesome-free-solid';
 import './ModalCarousel.css';
 import React from 'react';
+import './MenuFixed.css';
 export default class ModalCarousel extends React.Component {
 
     constructor(props) {

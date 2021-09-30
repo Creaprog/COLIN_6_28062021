@@ -122,10 +122,11 @@ class Photographer extends React.Component {
   }
 
   render() {
+    console.log(window.innerWidth);
     return (
-      <div>
-        {this.modalCarousel()}
         <div className="container">
+          <div className="menu_middle">Contactez-moi</div>
+          {this.modalCarousel()}
           <a className="icon" href="/">FishEye</a>
           <div className="Jumbotron">
             <div className="card">
@@ -168,7 +169,6 @@ class Photographer extends React.Component {
           </div>
           <MenuFixedDesktop likes={this.state.likes} price={this.state.photographers?.price}/>
         </div>
-      </div>
     );
   }
 }
