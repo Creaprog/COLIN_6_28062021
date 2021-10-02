@@ -93,32 +93,29 @@
 .media {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 100px;
-    grid-row-gap: 100px;
-    grid-template-rows: repeat(4, 400px);
+    grid-column-gap: 40px;
+    grid-row-gap: 40px;
     position: relative;
 }
 
 @media screen and (max-width: 1200px) {
     .media {
         grid-template-columns: 1fr;
-        grid-row-gap: 80px;
-        /* TODO: Il faut une solution !  */
-        grid-template-rows: repeat(auto-fit, minmax(250px, 1fr));
+        grid-row-gap: 10px;
     }
 }
 
 .image-rectangle {
     border-radius: 5px;
     width: 100%;
-    height: 100%;
+    height: 300px;
     object-fit: cover;
 }
 
 .video-rectangle {
     border-radius: 5px;
     width: 100%;
-    height: 100%;
+    height: 300px;
     object-fit: cover;
 }
 

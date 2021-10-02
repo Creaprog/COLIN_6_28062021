@@ -56,14 +56,14 @@ class Home extends React.Component {
             <header className="index">
             <div className="icon"><Link to={'/'}>FishEye</Link></div>
             <nav className="index__tag">
-                <div className="bottom" style={{background: this.updateColor("portrait")}} onClick={() => this.updateTag("portrait")}>#Portrait</div>
-                <div className="bottom" style={{background: this.updateColor("art")}} onClick={() => this.updateTag("art")}>#Art</div>
-                <div className="bottom" style={{background: this.updateColor("fashion")}} onClick={() => this.updateTag("fashion")}>#Fashion</div>
-                <div className="bottom" style={{background: this.updateColor("architecture")}} onClick={() => this.updateTag("architecture")}>#Architecture</div>
-                <div className="bottom" style={{background: this.updateColor("travel")}} onClick={() => this.updateTag("travel")}>#Travel</div>
-                <div className="bottom" style={{background: this.updateColor("sport")}} onClick={() => this.updateTag("sport")}>#Sport</div>
-                <div className="bottom" style={{background: this.updateColor("animals")}} onClick={() => this.updateTag("animals")}>#Animals</div>
-                <div className="bottom" style={{background: this.updateColor("events")}} onClick={() => this.updateTag("events")}>#Events</div>
+                <button className="bottom" style={{background: this.updateColor("portrait")}} onClick={() => this.updateTag("portrait")}>#Portrait</button>
+                <button className="bottom" style={{background: this.updateColor("art")}} onClick={() => this.updateTag("art")}>#Art</button>
+                <button className="bottom" style={{background: this.updateColor("fashion")}} onClick={() => this.updateTag("fashion")}>#Fashion</button>
+                <button className="bottom" style={{background: this.updateColor("architecture")}} onClick={() => this.updateTag("architecture")}>#Architecture</button>
+                <button className="bottom" style={{background: this.updateColor("travel")}} onClick={() => this.updateTag("travel")}>#Travel</button>
+                <button className="bottom" style={{background: this.updateColor("sport")}} onClick={() => this.updateTag("sport")}>#Sport</button>
+                <button className="bottom" style={{background: this.updateColor("animals")}} onClick={() => this.updateTag("animals")}>#Animals</button>
+                <button className="bottom" style={{background: this.updateColor("events")}} onClick={() => this.updateTag("events")}>#Events</button>
             </nav>
             <div className="index__title">Nos photographes</div>
             </header>
