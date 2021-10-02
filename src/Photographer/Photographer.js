@@ -52,7 +52,7 @@ class Photographer extends React.Component {
   videoCard(media) {
     return (
       <div key={media.id}>
-        <video className="video-rectangle" autoPlay width="320">
+        <video className="video-rectangle" autoPlay loop width="320">
           <source src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.video} type="video/mp4" />
         </video>
         <div className="card-text">
