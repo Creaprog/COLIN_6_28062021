@@ -11,10 +11,9 @@ import Photographer from "./Photographer/Photographer";
 class App extends Component {
   render() {
     return (
-
         <Router>
           <Switch>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/:tag?' component={Home} />
             <Route path='/photographer/:id' component={Photographer} />
           </Switch>
         </Router>

@@ -7,6 +7,7 @@ import { faCaretUp, faHeart } from '@fortawesome/fontawesome-free-solid';
 import MenuFixedDesktop from './MenuFixed.js';
 import TagsCard from "./../Home/TagsCard";
 import ModalCarousel from './ModalCarousel';
+import { Link } from "react-router-dom";
 
 class Photographer extends React.Component {
   
@@ -30,7 +31,6 @@ class Photographer extends React.Component {
         photographers: result.data.photographers.filter(p => p.id.toString() === this.props.match.params.id)[0],
         likes: result.data.media.filter(m => m.photographerId.toString() === this.props.match.params.id).reduce((acc, cur) => acc + cur.likes, 0)
       }))
-      .catch(error => console.log(error));
   }
 
   componentDidMount() {
@@ -110,7 +110,7 @@ class Photographer extends React.Component {
   createTagsCard(photographerTags) {
     var tags = [];
     for (const tag of photographerTags) {
-      tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
+      tags.push(<Link to={"/" + tag} key={tag.toString()}>{TagsCard(tag)}</Link>);
     }
     this.setState({tags: tags});
   }
@@ -122,7 +122,6 @@ class Photographer extends React.Component {
   }
 
   render() {
-    console.log(window.innerWidth);
     return (
         <div className="container">
           <div className="menu_middle">Contactez-moi</div>

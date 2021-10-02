@@ -11,35 +11,42 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          tag: 0,
-          photographers: []
+          photographers: [],
+          tag: this.props.match.params.tag
         };
-      }
+    }
 
-      async call() {
+    async call() {
         await axios.get("/data.json")
           .then(result => this.setState({
             photographers: result.data.photographers
-          }))
-          .catch(error => console.log(error));
-      }
-    
-      componentDidMount() {
+          }));
+    }
+
+    componentDidMount() {
         this.call();
-      }
-      
-    updateTag(value) {
-        return (this.state.tag === value) ? this.setState({tag : 0}): this.setState({tag : value});
+    }
+
+    componentDidUpdate(prevsprops) {
+        //TODO : A refaire en ternaire
+        if (this.props.match.params.tag !== prevsprops.match.params.tag) {
+            this.setState({tag : this.props.match.params.tag});
+        }
     }
 
     updateColor(value) {
-        return (this.state.tag === value) ? "#D3573C": "white";
+        //TODO : A refaire en ternaire
+        if (this.state.tag === undefined) {
+            return "white";
+        } if (this.state.tag === value) {
+            return "#D3573C";
+        }
     }
 
     render() {
         var photographers = [];
         
-        if (this.state.tag === 0) {
+        if (this.state.tag === undefined) {
             for (const photographer of this.state.photographers) {
                 photographers.push(<div key={photographer.id.toString()}>{ContactCard(photographer)}</div>);
             }
@@ -56,14 +63,14 @@ class Home extends React.Component {
             <header className="index">
             <div className="icon"><Link to={'/'}>FishEye</Link></div>
             <nav className="index__tag">
-                <button className="bottom" style={{background: this.updateColor("portrait")}} onClick={() => this.updateTag("portrait")}>#Portrait</button>
-                <button className="bottom" style={{background: this.updateColor("art")}} onClick={() => this.updateTag("art")}>#Art</button>
-                <button className="bottom" style={{background: this.updateColor("fashion")}} onClick={() => this.updateTag("fashion")}>#Fashion</button>
-                <button className="bottom" style={{background: this.updateColor("architecture")}} onClick={() => this.updateTag("architecture")}>#Architecture</button>
-                <button className="bottom" style={{background: this.updateColor("travel")}} onClick={() => this.updateTag("travel")}>#Travel</button>
-                <button className="bottom" style={{background: this.updateColor("sport")}} onClick={() => this.updateTag("sport")}>#Sport</button>
-                <button className="bottom" style={{background: this.updateColor("animals")}} onClick={() => this.updateTag("animals")}>#Animals</button>
-                <button className="bottom" style={{background: this.updateColor("events")}} onClick={() => this.updateTag("events")}>#Events</button>
+                <Link to="portrait" className="bottom" style={{background: this.updateColor("portrait")}} >#Portrait</Link>
+                <Link to="art" className="bottom" style={{background: this.updateColor("art")}}>#Art</Link>
+                <Link to="fashion" className="bottom" style={{background: this.updateColor("fashion")}}>#Fashion</Link>
+                <Link to="architecture" className="bottom" style={{background: this.updateColor("architecture")}} >#Architecture</Link>
+                <Link to="travel" className="bottom" style={{background: this.updateColor("travel")}}>#Travel</Link>
+                <Link to="sport" className="bottom" style={{background: this.updateColor("sport")}}>#Sport</Link>
+                <Link to="animals" className="bottom" style={{background: this.updateColor("animals")}}>#Animals</Link>
+                <Link to="events" className="bottom" style={{background: this.updateColor("events")}}>#Events</Link>
             </nav>
             <div className="index__title">Nos photographes</div>
             </header>
@@ -74,8 +81,6 @@ class Home extends React.Component {
         </div>
      );
     }
-    
-
 }
 
 export default Home;

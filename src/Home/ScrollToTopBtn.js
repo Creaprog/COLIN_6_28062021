@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './ScrollToTop.css';
 
-//TODO: Fuite de mémoire quelque part ici...
+//TODO : Fuite de mémoire quelque part ici...
 export default class ScrollToTopBtn extends Component {
   constructor(props) {
     super(props);

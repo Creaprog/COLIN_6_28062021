@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function ContactCard(props) {
     var tags = [];
     for (const tag of props.tags) {
-        tags.push(<div key={tag.toString()}>{TagsCard(tag)}</div>);
+        tags.push(<Link to={"/" + tag}key={tag.toString()}>{TagsCard(tag)}</Link>);
     }
     return (
         <div className="user">
