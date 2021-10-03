@@ -18,14 +18,14 @@ export default class ModalCarousel extends React.Component {
         }
     }
 
-    less() {
+    prev() {
         if (this.state.index > 0) {
             return this.setState({index : this.state.index - 1});
         }
         return null;
     }
 
-    more() {
+    next() {
         var length = this.props.media.length;
         if (this.state.index < length - 1) {
             return this.setState({index : this.state.index + 1});
@@ -53,15 +53,24 @@ export default class ModalCarousel extends React.Component {
             </video>
         )
     }
-
+    
+    handleKeyPress(event) {
+        event.persist();
+        console.log(event.key);
+        if (event.key === 'Enter') {
+            this.next();
+        }
+    }
+    
     render() { 
         if (!this.props.show) {
             return null;
         }
+
         return (
             <div className="modal">
                 <div className="modal-content">
-                    <div className="modal-left" onClick={() => this.less()}>
+                    <div className="modal-left" onClick={() => this.prev()}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </div>
                 <div className="modal-body">
@@ -74,7 +83,7 @@ export default class ModalCarousel extends React.Component {
                     </div>
                 </div>
                 <div className="modal-right" >
-                    <FontAwesomeIcon icon={faChevronRight} onClick={() => this.more()} />
+                    <FontAwesomeIcon onKeyPress={(event) => this.handleKeyPress(event)} icon={faChevronRight} onClick={() => this.next()} />
                 </div>
             </div>
         </div>

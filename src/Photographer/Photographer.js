@@ -43,9 +43,9 @@ class Photographer extends React.Component {
   }
 
   imageCard(media) {
-    // TODO : Faire une class pour designer les images
+    // TODO : Faire une class pour designer les images et faire les touches ECHAP + LEFT + RIGHT
     return (
-      <div key={media.id} >
+      <div key={media.id}>
         <img onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})} className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.image} alt={media.title} />
         <div className="card-text">
           <div className="card-title">{media.title}</div>
@@ -56,7 +56,7 @@ class Photographer extends React.Component {
   }
 
   videoCard(media) {
-    // TODO : Faire une class pour designer les vidéos
+    // TODO : Faire une class pour designer les images et faire les touches ECHAP + LEFT + RIGHT
     return (
       <div key={media.id}>
         <video className="video-rectangle" autoPlay loop width="320">
