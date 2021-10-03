@@ -37,19 +37,26 @@ class Photographer extends React.Component {
     this.call().then(() => this.createTagsCard(this.state.photographers.tags)).then(() => {this.modalCarousel()});
   }
 
+  like(elem) {
+    elem.likes++;
+    this.setState({likes: this.state.likes + 1});
+  }
+
   imageCard(media) {
+    // TODO : Faire une class pour designer les images
     return (
-      <div key={media.id} onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}>
-        <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.image} alt={media.title} />
+      <div key={media.id} >
+        <img onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})} className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.image} alt={media.title} />
         <div className="card-text">
           <div className="card-title">{media.title}</div>
-          <div className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></div>
+          <a href="#" onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></a>
         </div>
       </div>
     );
   }
 
   videoCard(media) {
+    // TODO : Faire une class pour designer les vidéos
     return (
       <div key={media.id}>
         <video className="video-rectangle" autoPlay loop width="320">
@@ -57,7 +64,7 @@ class Photographer extends React.Component {
         </video>
         <div className="card-text">
           <div className="card-title">{media.title}</div>
-          <div className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></div>
+          <a href="#" onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></a>
         </div>
       </div>
     )
