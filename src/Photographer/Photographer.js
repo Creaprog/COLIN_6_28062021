@@ -7,6 +7,7 @@ import { faCaretUp, faHeart } from '@fortawesome/fontawesome-free-solid';
 import MenuFixedDesktop from './MenuFixed.js';
 import TagsCard from "./../Home/TagsCard";
 import ModalCarousel from './ModalCarousel';
+import ModalContact from './ModalContact';
 import { Link } from "react-router-dom";
 
 class Photographer extends React.Component {
@@ -20,6 +21,7 @@ class Photographer extends React.Component {
       tags: [],
       likes: 0,
       showCarousel: false,
+      showContact: false,
       index: 0
     };
   }
@@ -34,7 +36,10 @@ class Photographer extends React.Component {
   }
 
   componentDidMount() {
-    this.call().then(() => this.createTagsCard(this.state.photographers.tags)).then(() => {this.modalCarousel()});
+    this.call()
+      .then(() => this.createTagsCard(this.state.photographers.tags))
+      .then(() => {this.modalCarousel()})
+      .then(() => {this.modalContact()});
   }
 
   like(elem) {
@@ -59,7 +64,7 @@ class Photographer extends React.Component {
     // TODO : Faire une class pour designer les images et faire les touches ECHAP + LEFT + RIGHT
     return (
       <div key={media.id}>
-        <video className="video-rectangle" autoPlay loop width="320">
+        <video className="video-rectangle" autoPlay loop width="320" onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}>
           <source src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.video} type="video/mp4" />
         </video>
         <div className="card-text">
@@ -128,11 +133,18 @@ class Photographer extends React.Component {
     )
   }
 
+  modalContact() {
+    return (
+      <ModalContact onClose={() => this.setState({showContact: false})} show={this.state.showContact} />
+    )
+  }
+  
   render() {
     return (
         <div className="container">
-          <div className="menu_middle">Contactez-moi</div>
+          <button className="menu_middle" onClick={() => this.setState({showContact: true})}>Contactez-moi</button>
           {this.modalCarousel()}
+          {this.modalContact()}
           <a className="icon" href="/">FishEye</a>
           <div className="Jumbotron">
             <div className="card">
@@ -143,9 +155,9 @@ class Photographer extends React.Component {
                 <div className="user__tags">{this.state.tags}</div>
               </div>
               <div className="card-middle">
-                <div className="card-buttom">
+                <button className="card-buttom" onClick={() => this.setState({showContact: true})} >
                   Contactez-moi
-                </div>
+                </button>
               </div>
               <div className="card-pic">
                 <img className="image-cropper" src={process.env.PUBLIC_URL + "/assets/Photographers/" + this.state.photographers?.portrait} alt={this.state.photographers?.portrait} />

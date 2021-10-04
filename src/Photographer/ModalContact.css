@@ -1,0 +1,28 @@
+.modal-contact {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.modal-contact-content {
+    padding-left: 20px;
+    width: 500px;
+    background-color: #DB8876;
+}
+
+@media screen and (max-width: 1200px) {
+    .modal-contact-content {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0; 
+    } 
+}

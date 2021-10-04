@@ -8,14 +8,32 @@ export default class ModalCarousel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          index: this.props.index
+          index: this.props.index,
+          show: this.props.show
         };
     }
 
     componentDidUpdate(prevsprops) {
         if (this.props.index !== prevsprops.index) {
             this.setState({index : this.props.index});
+        } else if (this.props.show !== prevsprops.show) {
+            this.setState({show : this.props.show});
         }
+
+    }
+
+    componentDidMount() {
+        document.addEventListener('keydown', (event) => {
+            if (this.state.show) {
+                if (event.code === 'Escape') {
+                    this.props.onClose();
+                } else if (event.code === 'ArrowLeft') {
+                    this.prev();
+                } else if(event.code === 'ArrowRight') {
+                    this.next();
+                }
+            }
+        });  
     }
 
     prev() {
@@ -54,14 +72,6 @@ export default class ModalCarousel extends React.Component {
         )
     }
     
-    handleKeyPress(event) {
-        event.persist();
-        console.log(event.key);
-        if (event.key === 'Enter') {
-            this.next();
-        }
-    }
-    
     render() { 
         if (!this.props.show) {
             return null;
@@ -83,7 +93,7 @@ export default class ModalCarousel extends React.Component {
                     </div>
                 </div>
                 <div className="modal-right" >
-                    <FontAwesomeIcon onKeyPress={(event) => this.handleKeyPress(event)} icon={faChevronRight} onClick={() => this.next()} />
+                    <FontAwesomeIcon icon={faChevronRight} onClick={() => this.next()} />
                 </div>
             </div>
         </div>
