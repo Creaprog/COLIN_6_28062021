@@ -2,7 +2,6 @@ import React from 'react';
 import './ModalContact.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/fontawesome-free-solid';
-
 export default class ModalContact extends React.Component {
     
     constructor(props) {
@@ -21,8 +20,10 @@ export default class ModalContact extends React.Component {
             <div className="modal-contact">
                 <div className="modal-contact-content">
                     <div className="modal-contact-header">
-                        <FontAwesomeIcon icon={faTimes} onClick={this.props.onClose} />
-                        <h1>Contactez-moi Name</h1>
+                        <div className="close">
+                            <FontAwesomeIcon icon={faTimes} onClick={this.props.onClose} />
+                        </div>
+                        <h1>Contactez-moi<br /> {this.props.photographers.name}</h1>
                     </div>
                     <div className="modal-contact-body">
                     <form>
@@ -32,9 +33,9 @@ export default class ModalContact extends React.Component {
                         <input type="text" name="lname" /><br />
                         <label for="email">Email</label><br />
                         <input type="text" name="email" /><br />
-                        <label for="message">Message</label><br />
-                        <textarea rows="4" cols="30" name="comment" form="usrform">Enter text here...</textarea><br />
-                        <input type="submit" value="Envoyer" /><br />
+                        <label for="message">Votre message</label><br />
+                        <textarea rows="4" cols="30" name="comment" form="usrform"></textarea><br />
+                        <input className="submit" type="submit" value="Envoyer" /><br />
                     </form> 
                     </div>
                 </div>

@@ -48,7 +48,6 @@ class Photographer extends React.Component {
   }
 
   imageCard(media) {
-    // TODO : Faire une class pour designer les images et faire les touches ECHAP + LEFT + RIGHT
     return (
       <div key={media.id}>
         <img onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})} className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.image} alt={media.title} />
@@ -61,7 +60,6 @@ class Photographer extends React.Component {
   }
 
   videoCard(media) {
-    // TODO : Faire une class pour designer les images et faire les touches ECHAP + LEFT + RIGHT
     return (
       <div key={media.id}>
         <video className="video-rectangle" autoPlay loop width="320" onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}>
@@ -135,7 +133,7 @@ class Photographer extends React.Component {
 
   modalContact() {
     return (
-      <ModalContact onClose={() => this.setState({showContact: false})} show={this.state.showContact} />
+      <ModalContact onClose={() => this.setState({showContact: false})} show={this.state.showContact} photographers={this.state.photographers}/>
     )
   }
   
