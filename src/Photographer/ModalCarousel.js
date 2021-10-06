@@ -8,23 +8,19 @@ export default class ModalCarousel extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-          index: this.props.index,
-          show: this.props.show
+          index: this.props.index
         };
     }
 
     componentDidUpdate(prevsprops) {
         if (this.props.index !== prevsprops.index) {
             this.setState({index : this.props.index});
-        } else if (this.props.show !== prevsprops.show) {
-            this.setState({show : this.props.show});
-        }
-
+        } 
     }
 
     componentDidMount() {
         document.addEventListener('keydown', (event) => {
-            if (this.state.show) {
+            if (this.props.show) {
                 if (event.code === 'Escape') {
                     this.props.onClose();
                 } else if (event.code === 'ArrowLeft') {

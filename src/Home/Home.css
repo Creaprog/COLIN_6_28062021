@@ -12,9 +12,9 @@
     align-items: center;
 }
 
-.index :nth-child(1) { order: 1;}
-.index :nth-child(2) { order: 2;}
-.index :nth-child(3) { order: 3;}
+.index :nth-child(1) { order: none;}
+.index :nth-child(2) { order: none;}
+.index :nth-child(3) { order: none;}
 
 @media screen and (max-width: 1200px) {
   .index :nth-child(2) { order: 3;}
