@@ -56,13 +56,13 @@ export default class ModalCarousel extends React.Component {
 
     imageCard() {
         return (
-            <img className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.props.photographers.name + "/" + this.props.media[this.state.index].image} alt={this.props.media[this.state.index].title} />
+            <img className="image-rectangle-carousel" src={process.env.PUBLIC_URL + "/assets/" + this.props.photographers.name + "/" + this.props.media[this.state.index].image} alt={this.props.media[this.state.index].title} />
         )
     }
 
     videoCard() {
         return (
-            <video className="video-rectangle" autoPlay width="320">
+            <video className="video-rectangle-carousel" autoPlay width="320">
                 <source src={process.env.PUBLIC_URL + "/assets/" + this.props.photographers.name + "/" + this.props.media[this.state.index].video} type="video/mp4" />
             </video>
         )
