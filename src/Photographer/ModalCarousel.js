@@ -81,7 +81,7 @@ export default class ModalCarousel extends React.Component {
                     </div>
                 <div className="modal-body">
                     <div className="modal-body-header">
-                        <FontAwesomeIcon icon={faTimes} onClick={this.props.onClose} />
+                        <FontAwesomeIcon className="direction" icon={faTimes} onClick={this.props.onClose} />
                     </div>
                     {this.displayCard(this.props.media)}
                     <div>
@@ -89,7 +89,7 @@ export default class ModalCarousel extends React.Component {
                     </div>
                 </div>
                 <div className="modal-right" >
-                    <FontAwesomeIcon icon={faChevronRight} onClick={() => this.next()} />
+                    <FontAwesomeIcon className="direction" icon={faChevronRight} onClick={() => this.next()} />
                 </div>
             </div>
         </div>

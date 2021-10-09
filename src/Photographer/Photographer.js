@@ -50,7 +50,7 @@ class Photographer extends React.Component {
   imageCard(media) {
     return (
       <div key={media.id}>
-        <img tabindex="0" onKeyDown={(e) => {
+        <img tabIndex="0" onKeyDown={(e) => {
           if (e.key === "Enter") {
             this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}
           }
@@ -58,7 +58,7 @@ class Photographer extends React.Component {
              onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})} className="image-rectangle" src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.image} alt={media.title} />
         <div className="card-text">
           <div className="card-title">{media.title}</div>
-          <a href="#" onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></a>
+          <button onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></button>
         </div>
       </div>
     );
@@ -68,12 +68,12 @@ class Photographer extends React.Component {
     return (
       <div key={media.id}>
         {/* TODO : Faire la même chose pour ici */}
-        <video tabindex="0" className="video-rectangle" autoPlay loop width="320" onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}>
+        <video tabIndex="0" className="video-rectangle" autoPlay loop width="320" onClick={() => this.setState({showCarousel: true, index: this.state.media.indexOf(media)})}>
           <source src={process.env.PUBLIC_URL + "/assets/" + this.state.photographers.name + "/" + media.video} type="video/mp4" />
         </video>
         <div className="card-text">
           <div className="card-title">{media.title}</div>
-          <a href="#" onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></a>
+          <button onClick={() => this.like(media)} className="heart">{media.likes} <FontAwesomeIcon icon={faHeart} /></button>
         </div>
       </div>
     )

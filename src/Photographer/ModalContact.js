@@ -11,6 +11,15 @@ export default class ModalContact extends React.Component {
         };
     }
 
+    contactSubmit = (e) => {
+        e.preventDefault();
+        console.log("Prénom : " + e.target.elements.prénom.value);
+        console.log("Nom : " + e.target.elements.nom.value);
+        console.log("Email : " + e.target.elements.email.value);
+        console.log("Message : " + e.target.elements.message.value);
+        this.props.onClose();
+    }
+
     render()
     {
         if (!this.props.show) {
@@ -26,16 +35,16 @@ export default class ModalContact extends React.Component {
                         <h1>Contactez-moi<br /> {this.props.photographers.name}</h1>
                     </div>
                     <div className="modal-contact-body">
-                    <form>
-                        <label for="Pname">Prénom </label><br />
+                    <form onSubmit={this.contactSubmit}>
+                        <label name="prénom">Prénom </label><br />
                         <input type="text" name="prénom" /><br />
-                        <label for="Nname">Nom</label><br />
-                        <input type="text" name="lname" /><br />
-                        <label for="email">Email</label><br />
+                        <label name="nom">Nom</label><br />
+                        <input type="text" name="nom" /><br />
+                        <label name="email">Email</label><br />
                         <input type="text" name="email" /><br />
-                        <label for="message">Votre message</label><br />
-                        <textarea rows="4" cols="30" name="comment" form="usrform"></textarea><br />
-                        <input className="submit" type="submit" value="Envoyer" /><br />
+                        <label name="message">Votre message</label><br />
+                        <textarea rows="4" cols="30" name="message"></textarea><br />
+                        <button className="submit" type="submit">Envoyer</button><br />
                     </form> 
                     </div>
                 </div>

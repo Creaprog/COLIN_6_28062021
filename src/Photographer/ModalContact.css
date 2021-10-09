@@ -61,4 +61,9 @@ textarea {
     color: white;
     padding: 10px;
     cursor: pointer;
+    border: none;
+}
+
+.direction {
+    color: var(--secondaire-3);
 }
