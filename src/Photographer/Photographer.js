@@ -170,21 +170,11 @@ class Photographer extends React.Component {
           </div>
           <div className="filter">
             <p className="text-filter"><b>Trier par</b></p>
-            <nav className="nav-filter">
-              <ul className="nav-main">
-                <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[0])}>
-                  {this.state.filter[0]} <FontAwesomeIcon icon={faCaretUp} />
-                </div>
-                <ul className="nav-sub">
-                  <li className="nav-item">
-                    <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[1])}>{this.state.filter[1]}</div>
-                  </li>
-                  <li className="nav-item">
-                    <div className="link" onClick={() => this.swap(this.state.filter, this.state.filter[2])}>{this.state.filter[2]}</div>
-                  </li>
-                </ul>
-              </ul>
-            </nav>
+                <select className="select-tag" name="filter" value={this.state.filter} onChange={(event) => this.swap(this.state.filter, event.target.value)}>
+                  <option value={this.state.filter[0]}>{this.state.filter[0]}</option>
+                  <option value={this.state.filter[1]}>{this.state.filter[1]}</option>
+                  <option value={this.state.filter[2]}>{this.state.filter[2]}</option>
+                </select>
           </div>
           <div className="media">
             {this.displayCard(this.state.media)}

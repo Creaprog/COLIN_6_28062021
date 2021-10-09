@@ -137,16 +137,14 @@
 .text-filter {
     margin-right: 20px;
 }
-.nav-filter {
-    display: inline-block;
-    background-color: var(--secondaire-3);
-    border-bottom: 1px solid #ccc;
-    border-radius: 10px;
-    color: white;
-}
 
-.nav-filter:hover {
-    border-radius: 10px 10px 0 0;
+.select-tag {
+    background-color: var(--secondaire-3);
+    color: white;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+    margin-right: 20px;
 }
 
 .nav-item {
@@ -207,7 +205,4 @@ ul {
     border: none;
     background-color: transparent;
     font-size: 24px;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    font-weight: bold;
 }
