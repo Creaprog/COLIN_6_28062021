@@ -7,7 +7,8 @@ export default class ModalContact extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            show: this.props.show
+            show: this.props.show,
+            error : ""
         };
     }
 
@@ -17,7 +18,12 @@ export default class ModalContact extends React.Component {
         console.log("Nom : " + e.target.elements.nom.value);
         console.log("Email : " + e.target.elements.email.value);
         console.log("Message : " + e.target.elements.message.value);
-        this.props.onClose();
+        if (e.target.elements.prénom.value === "" || e.target.elements.nom.value === "" || e.target.elements.email.value === "" || e.target.elements.message.value === "") {
+            this.setState({error: "Veuillez remplir tous les champs"});
+        }
+        else {
+            this.props.onClose();
+        }
     }
 
     render()
@@ -35,17 +41,18 @@ export default class ModalContact extends React.Component {
                         <h1>Contactez-moi<br /> {this.props.photographers.name}</h1>
                     </div>
                     <div className="modal-contact-body">
-                    <form onSubmit={this.contactSubmit}>
-                        <label name="prénom">Prénom </label><br />
-                        <input type="text" name="prénom" /><br />
-                        <label name="nom">Nom</label><br />
-                        <input type="text" name="nom" /><br />
-                        <label name="email">Email</label><br />
-                        <input type="text" name="email" /><br />
-                        <label name="message">Votre message</label><br />
-                        <textarea rows="4" cols="30" name="message"></textarea><br />
-                        <button className="submit" type="submit">Envoyer</button><br />
-                    </form> 
+                        <div className="error">{this.state.error}</div>
+                        <form onSubmit={this.contactSubmit}>
+                            <label name="prénom">Prénom </label><br />
+                            <input type="text" name="prénom" /><br />
+                            <label name="nom">Nom</label><br />
+                            <input type="text" name="nom" /><br />
+                            <label name="email">Email</label><br />
+                            <input type="text" name="email" /><br />
+                            <label name="message">Votre message</label><br />
+                            <textarea rows="4" cols="30" name="message"></textarea><br />
+                            <button className="submit" type="submit">Envoyer</button><br />
+                        </form> 
                     </div>
                 </div>
             </div>
